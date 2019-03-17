@@ -72,6 +72,9 @@ chmod +x /etc/rc.local
 truncate -s0 /etc/hostname
 hostnamectl set-hostname localhost
 
+#reset machine-id
+truncate -s0 /etc/machine-id
+
 #cleanup apt
 apt clean
 
