@@ -21,13 +21,7 @@ apt update -y
 apt upgrade -y
 
 #install packages
-apt install -y open-vm-tools openssh-server
-
-#make the current user a password-less sudoer
-if [ -f /etc/sudoers.d/$(whoami) ]; then
-    sudo rm -f /etc/sudoers.d/$(whoami)
-fi
-echo '$(whoami) ALL= NOPASSWD: ALL' | sudo tee /etc/sudoers.d/$(whoami) >/dev/null
+apt install -y open-vm-tools
 
 #Stop services for cleanup
 service rsyslog stop
