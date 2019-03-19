@@ -16,12 +16,15 @@ fi
 
 set -v
 
-#update apt-cache
-apk update -y
-apk upgrade -y
+#enable communitiy packages 
+sed -ri '/v3.9\/community/s/^#//g' /etc/apk/repositories
+
+#update the system to the latest packages and caches the community repositorie
+apk update
+apk upgrade
 
 #install packages
-apk install open-vm-tools
+apk add curl nano openssh-server bash sudo htop open-vm-tools
 
 #Stop services for cleanup
 service syslog stop
@@ -48,8 +51,8 @@ truncate -s0 /etc/hostname
 rm -rf /var/cache/apk/*
 
 # disable swap
-sudo swapoff --all
-sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
+swapoff -a
+sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 
 #cleanup shell history
 cat /dev/null > ~/.bash_history && history -c
