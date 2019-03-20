@@ -7,7 +7,7 @@
 # http://dl-cdn.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.4-x86_64.iso
 
 # SETUP & RUN
-# curl -sL https://raw.githubusercontent.com/philipsaad/linux-virt-sysprep/master/prepare-alpine-linux-virt-3.8.4-template.sh | -
+# curl -sL https://raw.githubusercontent.com/philipsaad/linux-virt-sysprep/master/prepare-alpine-linux-virt-3.8.4-template.sh | ash
 
 set -v
 
