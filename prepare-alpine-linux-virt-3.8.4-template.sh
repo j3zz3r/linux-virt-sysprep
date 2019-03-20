@@ -42,6 +42,7 @@ rm -f /etc/dropbear/*
 #reset hostname
 truncate -s0 /etc/hostname
 echo localhost > /etc/hostname
+hostname -F /etc/hostname
 
 #cleanup apk cache
 rm -rf /var/cache/apk/*
@@ -53,4 +54,4 @@ swapoff -a
 cat /dev/null > ~/.ash_history
 
 #shutdown
-halt
+reboot
