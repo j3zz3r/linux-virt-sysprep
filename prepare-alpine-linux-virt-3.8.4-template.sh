@@ -40,7 +40,8 @@ rm -rf /var/tmp/*
 rm -f /etc/dropbear/*
 
 #reset hostname
-rm -f /etc/hostname
+truncate -s0 /etc/hostname
+echo localhost > /etc/hostname
 
 #cleanup apk cache
 rm -rf /var/cache/apk/*
