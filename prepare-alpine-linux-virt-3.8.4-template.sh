@@ -3,16 +3,11 @@
 #### WARNING PIPING TO BASH IS STUPID: DO NOT USE THIS
 ######################################################
 # modified from: jcppkkk/prepare-ubuntu-template.sh
-# Tested Alpine Version 3.9.2 Virtual
-# http://dl-cdn.alpinelinux.org/alpine/v3.9/releases/x86_64/alpine-virt-3.9.2-x86_64.iso
+# Tested Alpine Version 3.8.4 Virtual
+# http://dl-cdn.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-virt-3.8.4-x86_64.iso
 
 # SETUP & RUN
-# curl -sL https://raw.githubusercontent.com/philipsaad/linux-virt-sysprep/master/prepare-alpine-linux-virt-3.9.2-template.sh | sudo -E bash -
-
-if [ `id -u` -ne 0 ]; then
-	echo Need sudo
-	exit 1
-fi
+# curl -sL https://raw.githubusercontent.com/philipsaad/linux-virt-sysprep/master/prepare-alpine-linux-virt-3.8.4-template.sh | -
 
 set -v
 
@@ -24,7 +19,7 @@ apk update
 apk upgrade
 
 #install packages
-apk add curl nano openssh-server bash sudo htop open-vm-tools
+apk add curl nano sudo dropbear chrony htop open-vm-tools 
 
 #Stop services for cleanup
 service syslog stop
@@ -42,21 +37,19 @@ rm -rf /tmp/*
 rm -rf /var/tmp/*
 
 #cleanup current ssh keys
-rm -f /etc/ssh/ssh_host_*
+rm -f /etc/dropbear/*
 
 #reset hostname
-truncate -s0 /etc/hostname
+rm -f /etc/hostname
 
 #cleanup apk cache
 rm -rf /var/cache/apk/*
 
 # disable swap
 swapoff -a
-sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 
 #cleanup shell history
-cat /dev/null > ~/.bash_history && history -c
-history -w
+cat /dev/null > ~/.ash_history
 
 #shutdown
 halt
