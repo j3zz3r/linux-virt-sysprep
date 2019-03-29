@@ -1,0 +1,31 @@
+# Use US layout with US variant
+KEYMAPOPTS="us us"
+
+# Set hostname to alpine-test
+HOSTNAMEOPTS="-n alpine-test"
+
+# Contents of /etc/network/interfaces
+INTERFACESOPTS="auto lo
+iface lo inet loopback
+auto eth0
+iface eth0 inet dhcp
+	hostname alpine-test
+"
+
+# Search domain of example.com, Google public nameserver
+DNSOPTS="-d Saad 192.168.0.1"
+
+# Set timezone to UTC
+TIMEZONEOPTS="-z America/Los_Angeles"
+
+# Default to US mirror
+APKREPOSOPTS="1"
+
+# Install dropbear
+SSHDOPTS="-c dropbear"
+
+# Use chrony
+NTPOPTS="-c chrony"
+
+# Use nvme disk
+DISKOPTS="-m sys /dev/nvme0n1"
