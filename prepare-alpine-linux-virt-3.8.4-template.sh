@@ -51,7 +51,7 @@ rm -rf /var/cache/apk/*
 swapoff -a
 
 #cleanup shell history
-cat /dev/null > ~/.ash_history
+cat /dev/null > ~/.bash_history
 
 #shutdown
 reboot
